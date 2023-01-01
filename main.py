@@ -1,31 +1,15 @@
 """
 Analysing Klaverjassen cardgame to improve CPU-player
+
+Instruction: roem[0] = non-roem; roem[1] = roem;
+Cards are: ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7'] # as strings!
 """
+from functions import *
+from rules import suits
 
-print('AI klaverjas cardgame analysis')
+roem_suit = suits[str(input('Whats the roem-suit? ')).lower()]
+print(roem_suit)
 
-# rules key = card name; value is list: [0] Hierarchy (int), [1] point values (int).
-rules_roem = {'Jack': {'hierarchy': 1, 'points_value': 20},
-              '9': {'hierarchy': 2, 'points_value': 14},
-              'Ace': {'hierarchy': 3, 'points_value': 11},
-              '10': {'hierarchy': 4, 'points_value': 10},
-              'King': {'hierarchy': 5, 'points_value': 4},
-              'Queen': {'hierarchy': 6, 'points_value': 3},
-              '8': {'hierarchy': 7, 'points_value': 0},
-              '7': {'hierarchy': 8, 'points_value': 0}}
+print(points_per_card('Jack', roem[0]) + points_per_card('9', roem[1]))
 
-rules_non_roem = {'Ace': {'hierarchy': 1, 'points_value': 11},
-                  '10': {'hierarchy': 2, 'points_value': 10},
-                  'King': {'hierarchy': 3, 'points_value': 4},
-                  'Queen': {'hierarchy': 4, 'points_value': 3},
-                  'Jack': {'hierarchy': 5, 'points_value': 2},
-                  '9': {'hierarchy': 6, 'points_value': 0},
-                  '8': {'hierarchy': 7, 'points_value': 0},
-                  '7': {'hierarchy': 8, 'points_value': 0}}
 
-print('Non roem:')
-for card in rules_non_roem.keys():
-    print(f"{card}, {rules_non_roem[card]['points_value']}, {rules_non_roem[card]['hierarchy']}")
-print('Roem:')
-for card in rules_roem.keys():
-    print(f"{card}, {rules_roem[card]['points_value']}, {rules_roem[card]['hierarchy']}")
